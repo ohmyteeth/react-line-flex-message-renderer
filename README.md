@@ -37,7 +37,7 @@ $ npm install @ohmyteeth/react-native-line-flex-message-renderer
 and
 
 ```tsx
-import { FlexMessageRenderer } from "@ohmyteeth/react-native-line-flex-message-renderer
+import { FlexMessageRenderer } from "@ohmyteeth/react-native-line-flex-message-renderer";
 
 const flexMessageJson = `{ ... }`; // your flex message json
 
