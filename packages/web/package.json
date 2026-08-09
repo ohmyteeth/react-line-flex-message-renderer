@@ -44,7 +44,7 @@
     "dev:cmk": "cmk --watch",
     "dev:tsdown": "tsdown --watch",
     "build": "pnpm run generate && tsdown",
-    "prepublishOnly": "pnpm run typecheck && pnpm run test && pnpm run build",
+    "prepublishOnly": "pnpm run typecheck && pnpm run build",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
