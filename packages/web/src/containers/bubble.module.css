@@ -1,0 +1,113 @@
+.bubble {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .inner {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+  }
+}
+
+.nano {
+  width: 120px;
+  max-width: 120px;
+
+  .inner {
+    border-radius: 10px;
+  }
+}
+
+.micro {
+  width: 160px;
+  max-width: 160px;
+
+  .inner {
+    border-radius: 10px;
+
+    .body-with-hero {
+      padding-top: 13px;
+      padding: 0;
+    }
+  }
+}
+
+.deca {
+  width: 220px;
+  max-width: 220px;
+
+  .inner {
+    border-radius: 10px;
+  }
+}
+
+.hecto {
+  width: 241px;
+  max-width: 241px;
+
+  .inner {
+    border-radius: 10px;
+  }
+}
+
+.kilo {
+  width: 260px;
+  max-width: 260px;
+
+  .inner {
+    border-radius: 10px;
+  }
+}
+
+.mega {
+  width: 300px;
+  max-width: 300px;
+
+  .inner {
+    border-radius: 17px;
+  }
+}
+
+.giga {
+  width: 340px;
+  max-width: 340px;
+
+  .inner {
+    border-radius: 5px;
+  }
+}
+
+.hero {
+}
+
+.header {
+}
+
+.body {
+  height: 100%;
+  flex-grow: 1;
+}
+
+.with-padding {
+  padding: 20px;
+}
+
+.body-with-header {
+  padding: 20px;
+}
+
+.body-with-hero {
+  padding-top: 19px;
+  padding: 20px;
+}
+
+.body-with-footer {
+  padding-bottom: 10px;
+  height: unset;
+}
+
+.footer {
+  padding: 10px;
+}

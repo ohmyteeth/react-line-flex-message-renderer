@@ -25,3 +25,9 @@ dist-ssr
 
 *storybook.log
 storybook-static
+
+# Vitest (VRT)
+.vitest-attachments/
+
+# Turborepo
+.turbo/

@@ -1,0 +1,23 @@
+.primary {
+  color: #fff;
+  background-color: #17c950;
+  width: 100%;
+  padding: 0 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.secondary {
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: #42659a;
+  text-decoration: none;
+}

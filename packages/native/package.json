@@ -1,0 +1,72 @@
+{
+  "name": "@ohmyteeth/react-native-line-flex-message-renderer",
+  "version": "0.1.0",
+  "description": "This is a core logic library for rendering LINE Flex Messages in React and React Native.",
+  "license": "MIT",
+  "author": "Oh my teeth, Co.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ohmyteeth/react-line-flex-message-renderer.git"
+  },
+  "homepage": "https://github.com/ohmyteeth/react-line-flex-message-renderer",
+  "bugs": {
+    "url": "https://github.com/ohmyteeth/react-line-flex-message-renderer/issues"
+  },
+  "keywords": [
+    "LINE",
+    "Flex Message",
+    "React",
+    "React Native"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "type": "module",
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.mts"
+    },
+    "./style.css": {
+      "import": "./dist/style.css"
+    }
+  },
+  "scripts": {
+    "dev": "run-p dev:*",
+    "dev:tsdown": "tsdown --watch",
+    "build": "tsdown",
+    "prepublishOnly": "pnpm run typecheck && pnpm run test && pnpm run build",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@ohmyteeth/line-flex-message-renderer-core": "workspace:*"
+  },
+  "devDependencies": {
+    "@oxfmt/binding-darwin-arm64": "catalog:",
+    "@oxfmt/binding-win32-x64-msvc": "catalog:",
+    "@oxlint/binding-darwin-arm64": "catalog:",
+    "@oxlint/binding-win32-x64-msvc": "catalog:",
+    "@types/node": "^26.1.1",
+    "npm-run-all2": "catalog:",
+    "oxfmt": "catalog:",
+    "oxlint": "catalog:",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "react-native": "^0.86.0",
+    "tsdown": "catalog:",
+    "typescript": "catalog:",
+    "vitest": "^4.1.10"
+  },
+  "peerDependencies": {
+    "react": "^19.2.7",
+    "react-native": "^0.86.0"
+  },
+  "packageManager": "pnpm@11.12.0"
+}

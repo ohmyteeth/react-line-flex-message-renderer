@@ -1,0 +1,19 @@
+.box {
+}
+
+.baseline {
+}
+
+.horizontal {
+  > p {
+    margin-left: var(--margin-size);
+  }
+}
+
+.vertical {
+  overflow: hidden;
+
+  > div {
+    margin-top: var(--margin-size);
+  }
+}
