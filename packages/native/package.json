@@ -54,6 +54,7 @@
     "@oxlint/binding-darwin-arm64": "catalog:",
     "@oxlint/binding-win32-x64-msvc": "catalog:",
     "@types/node": "^26.1.1",
+    "@types/react": "^19.2.18",
     "npm-run-all2": "catalog:",
     "oxfmt": "catalog:",
     "oxlint": "catalog:",

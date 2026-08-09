@@ -105,6 +105,9 @@ importers:
       '@types/node':
         specifier: ^26.1.1
         version: 26.1.1
+      '@types/react':
+        specifier: ^19.2.18
+        version: 19.2.18
       npm-run-all2:
         specifier: 'catalog:'
         version: 9.0.2
@@ -122,7 +125,7 @@ importers:
         version: 19.2.7(react@19.2.7)
       react-native:
         specifier: ^0.86.0
-        version: 0.86.0(@babel/core@7.28.6)(@react-native-community/cli@20.1.0(typescript@7.0.2))(@react-native/metro-config@0.86.0(@babel/core@7.28.6))(@types/react@19.2.17)(react@19.2.7)
+        version: 0.86.0(@babel/core@7.28.6)(@react-native-community/cli@20.1.0(typescript@7.0.2))(@react-native/metro-config@0.86.0(@babel/core@7.28.6))(@types/react@19.2.18)(react@19.2.7)
       tsdown:
         specifier: 'catalog:'
         version: 0.22.5(@tsdown/css@0.22.5)(oxc-resolver@11.23.0)(tsx@4.23.0)(typescript@7.0.2)
@@ -2931,6 +2934,9 @@ packages:
 
   '@types/react@19.2.17':
     resolution: {integrity: sha512-MXfmqaVPEVgkBT/aY0aGCkRWWtByiYQXo3xdQ8r5RzuFrPiRn8Gar2tQdXSUQ2GKV3bkXckek89V8wQBY2Q/Aw==}
+
+  '@types/react@19.2.18':
+    resolution: {integrity: sha512-AnzbBERsrLKtk2XSfTbYRLjQPdy116Sty4q+T+Bp3IC4l6jNBvreVPAHmpq9qhXQM7CXZPjLVmGMw9sy+hxQ3w==}
 
   '@types/resolve@1.20.6':
     resolution: {integrity: sha512-A4STmOXPhMUtHH+S6ymgE2GiBSMqf4oTvcQZMcHzokuTLVYzXTB8ttjcgxOVaAp2lGwEdzZ0J+cRbbeevQj1UQ==}
@@ -8342,9 +8348,7 @@ snapshots:
       metro-runtime: 0.84.4
     transitivePeerDependencies:
       - '@babel/core'
-      - bufferutil
       - supports-color
-      - utf-8-validate
 
   '@react-native/normalize-colors@0.74.89': {}
 
@@ -8359,14 +8363,14 @@ snapshots:
     optionalDependencies:
       '@types/react': 19.2.17
 
-  '@react-native/virtualized-lists@0.86.0(@types/react@19.2.17)(react-native@0.86.0(@babel/core@7.28.6)(@react-native-community/cli@20.1.0(typescript@7.0.2))(@react-native/metro-config@0.86.0(@babel/core@7.28.6))(@types/react@19.2.17)(react@19.2.7))(react@19.2.7)':
+  '@react-native/virtualized-lists@0.86.0(@types/react@19.2.18)(react-native@0.86.0(@babel/core@7.28.6)(@react-native-community/cli@20.1.0(typescript@7.0.2))(@react-native/metro-config@0.86.0(@babel/core@7.28.6))(@types/react@19.2.18)(react@19.2.7))(react@19.2.7)':
     dependencies:
       invariant: 2.2.4
       nullthrows: 1.1.1
       react: 19.2.7
-      react-native: 0.86.0(@babel/core@7.28.6)(@react-native-community/cli@20.1.0(typescript@7.0.2))(@react-native/metro-config@0.86.0(@babel/core@7.28.6))(@types/react@19.2.17)(react@19.2.7)
+      react-native: 0.86.0(@babel/core@7.28.6)(@react-native-community/cli@20.1.0(typescript@7.0.2))(@react-native/metro-config@0.86.0(@babel/core@7.28.6))(@types/react@19.2.18)(react@19.2.7)
     optionalDependencies:
-      '@types/react': 19.2.17
+      '@types/react': 19.2.18
 
   '@rolldown/binding-android-arm64@1.1.5':
     optional: true
@@ -8994,6 +8998,10 @@ snapshots:
       '@types/react': 19.2.17
 
   '@types/react@19.2.17':
+    dependencies:
+      csstype: 3.2.3
+
+  '@types/react@19.2.18':
     dependencies:
       csstype: 3.2.3
 
@@ -11645,7 +11653,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  react-native@0.86.0(@babel/core@7.28.6)(@react-native-community/cli@20.1.0(typescript@7.0.2))(@react-native/metro-config@0.86.0(@babel/core@7.28.6))(@types/react@19.2.17)(react@19.2.7):
+  react-native@0.86.0(@babel/core@7.28.6)(@react-native-community/cli@20.1.0(typescript@7.0.2))(@react-native/metro-config@0.86.0(@babel/core@7.28.6))(@types/react@19.2.18)(react@19.2.7):
     dependencies:
       '@react-native/assets-registry': 0.86.0
       '@react-native/codegen': 0.86.0(@babel/core@7.28.6)
@@ -11653,7 +11661,7 @@ snapshots:
       '@react-native/gradle-plugin': 0.86.0
       '@react-native/js-polyfills': 0.86.0
       '@react-native/normalize-colors': 0.86.0
-      '@react-native/virtualized-lists': 0.86.0(@types/react@19.2.17)(react-native@0.86.0(@babel/core@7.28.6)(@react-native-community/cli@20.1.0(typescript@7.0.2))(@react-native/metro-config@0.86.0(@babel/core@7.28.6))(@types/react@19.2.17)(react@19.2.7))(react@19.2.7)
+      '@react-native/virtualized-lists': 0.86.0(@types/react@19.2.18)(react-native@0.86.0(@babel/core@7.28.6)(@react-native-community/cli@20.1.0(typescript@7.0.2))(@react-native/metro-config@0.86.0(@babel/core@7.28.6))(@types/react@19.2.18)(react@19.2.7))(react@19.2.7)
       abort-controller: 3.0.0
       anser: 1.4.10
       ansi-regex: 5.0.1
@@ -11681,7 +11689,7 @@ snapshots:
       ws: 7.5.11
       yargs: 17.7.3
     optionalDependencies:
-      '@types/react': 19.2.17
+      '@types/react': 19.2.18
     transitivePeerDependencies:
       - '@babel/core'
       - '@react-native-community/cli'
