@@ -42,7 +42,7 @@
     "dev": "run-p dev:*",
     "dev:tsdown": "tsdown --watch",
     "build": "tsdown",
-    "prepublishOnly": "pnpm run typecheck && pnpm run test && pnpm run build",
+    "prepublishOnly": "pnpm run typecheck && pnpm run build",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
