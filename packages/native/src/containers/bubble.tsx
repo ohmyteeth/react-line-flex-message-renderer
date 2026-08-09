@@ -22,7 +22,7 @@ export const Bubble = ({
   // Native-only, not part of the Flex Message spec: lets Carousel measure every bubble's natural height
   // and stretch them all to match the tallest one, since ScrollView content doesn't do this on its own.
   containerStyle?: StyleProp<ViewStyle>;
-  onLayout?: (event: LayoutChangeEvent) => void;
+  onLayout?: ((event: LayoutChangeEvent) => void) | undefined;
 }) => {
   const hasHero = !!hero;
   const hasFooter = !!footer;
