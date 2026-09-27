@@ -4,8 +4,8 @@ import {
   type BubbleContainer,
   type ClickHandler,
 } from "@ohmyteeth/line-flex-message-renderer-core";
-import styles from "./bubble.module.css";
 import clsx from "clsx";
+import styles from "./carousel.module.css";
 
 export const Bubble = ({
   body,
@@ -14,7 +14,7 @@ export const Bubble = ({
   header,
   hero,
   size,
-  style,
+  styles: s,
   action,
   onClick,
 }: BubbleContainer & { onClick?: ClickHandler | undefined }) => {
@@ -29,20 +29,20 @@ export const Bubble = ({
 
   return (
     <div
-      className={clsx(styles.bubble, styles[size ?? "mega"])}
+      className={clsx(s.bubble, s[size ?? "mega"])}
       dir={direction}
       onClick={action ? () => handleClick(action) : undefined}
     >
-      <div className={styles.inner}>
+      <div className={s.inner}>
         {header && (
           <div
             className={styles.header}
             style={{
-              backgroundColor: style?.header?.backgroundColor ?? "#fff",
-              borderBottom: style?.header?.separator
-                ? `1px solid ${style?.header?.separatorColor ?? "#000"}`
+              backgroundColor: s?.header?.backgroundColor ?? "#fff",
+              borderBottom: s?.header?.separator
+                ? `1px solid ${s?.header?.separatorColor ?? "#000"}`
                 : "none",
-              borderColor: style?.header?.separatorColor ?? "#000",
+              borderColor: s?.header?.separatorColor ?? "#000",
             }}
           >
             {renderComponent(header, onClick)}
@@ -52,7 +52,7 @@ export const Bubble = ({
         {hero && (
           <div
             className={styles.hero}
-            style={{ backgroundColor: style?.hero?.backgroundColor ?? "#fff" }}
+            style={{ backgroundColor: s?.hero?.backgroundColor ?? "#fff" }}
           >
             {renderComponent(hero, onClick)}
           </div>
@@ -62,12 +62,12 @@ export const Bubble = ({
           <div
             className={clsx(
               styles.body,
-              hasHeader && !body.paddingAll && styles["body-with-header"],
-              hasHero && styles["body-with-hero"],
-              hasFooter && styles["body-with-footer"],
-              !body.paddingAll && styles["with-padding"],
+              hasHeader && !body.paddingAll && s["body-with-header"],
+              hasHero && s["body-with-hero"],
+              hasFooter && s["body-with-footer"],
+              !body.paddingAll && s["with-padding"],
             )}
-            style={{ backgroundColor: style?.body?.backgroundColor ?? "#fff" }}
+            style={{ backgroundColor: s?.body?.backgroundColor ?? "#fff" }}
           >
             {renderComponent(body, onClick)}
           </div>
@@ -77,11 +77,11 @@ export const Bubble = ({
           <div
             className={styles.footer}
             style={{
-              backgroundColor: style?.footer?.backgroundColor ?? "#fff",
-              borderTop: style?.footer?.separator
-                ? `1px solid ${style?.footer?.separatorColor ?? "#000"}`
+              backgroundColor: s?.footer?.backgroundColor ?? "#fff",
+              borderTop: s?.footer?.separator
+                ? `1px solid ${s?.footer?.separatorColor ?? "#000"}`
                 : "none",
-              borderColor: style?.footer?.separatorColor ?? "#000",
+              borderColor: s?.footer?.separatorColor ?? "#000",
             }}
           >
             {renderComponent(footer, onClick)}

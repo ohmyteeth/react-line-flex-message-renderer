@@ -12,7 +12,7 @@ export const Bubble = ({
   header,
   hero,
   size,
-  style,
+  styles,
   action,
   onClick,
   containerStyle,
@@ -47,8 +47,9 @@ export const Bubble = ({
     ...(size === "giga" && Styles.gigaInner),
   };
 
+  const Component = action ? TouchableOpacity : View;
   return (
-    <TouchableOpacity
+    <Component
       style={[{ ...Styles.bubble, ...Styles[size ?? "mega"] }, containerStyle]}
       onPress={handleClick}
       onLayout={onLayout}
@@ -57,9 +58,9 @@ export const Bubble = ({
         {header && (
           <View
             style={{
-              backgroundColor: style?.header?.backgroundColor ?? "#fff",
-              borderBottomWidth: style?.header?.separator ? 1 : 0,
-              borderColor: style?.header?.separatorColor ?? "#000",
+              backgroundColor: styles?.header?.backgroundColor ?? "#fff",
+              borderBottomWidth: styles?.header?.separator ? 1 : 0,
+              borderColor: styles?.header?.separatorColor ?? "#000",
             }}
           >
             {renderComponent(header, onClick)}
@@ -67,7 +68,7 @@ export const Bubble = ({
         )}
 
         {hero && (
-          <View style={{ backgroundColor: style?.hero?.backgroundColor ?? "#fff" }}>
+          <View style={{ backgroundColor: styles?.hero?.backgroundColor ?? "#fff" }}>
             {renderComponent(hero, onClick)}
           </View>
         )}
@@ -83,7 +84,7 @@ export const Bubble = ({
               ...(hasHero && size !== "micro" && Styles.bodyWithHero),
               ...(hasFooter && Styles.bodyWithFooter),
               ...(!body.paddingAll && Styles.withPadding),
-              backgroundColor: style?.body?.backgroundColor ?? "#fff",
+              backgroundColor: styles?.body?.backgroundColor ?? "#fff",
             }}
           >
             {renderComponent(body, onClick)}
@@ -94,16 +95,16 @@ export const Bubble = ({
           <View
             style={{
               ...Styles.footer,
-              backgroundColor: style?.footer?.backgroundColor ?? "#fff",
-              borderTopWidth: style?.footer?.separator ? 1 : 0,
-              borderColor: style?.footer?.separatorColor ?? "#000",
+              backgroundColor: styles?.footer?.backgroundColor ?? "#fff",
+              borderTopWidth: styles?.footer?.separator ? 1 : 0,
+              borderColor: styles?.footer?.separatorColor ?? "#000",
             }}
           >
             {renderComponent(footer, onClick)}
           </View>
         )}
       </View>
-    </TouchableOpacity>
+    </Component>
   );
 };
 

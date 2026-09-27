@@ -19,7 +19,7 @@ export interface BubbleContainer {
   hero?: BoxComponent | ImageComponent | VideoComponent;
   body?: BoxComponent;
   footer?: BoxComponent;
-  style?: {
+  styles?: {
     header?: BlockStyle;
     hero?: BlockStyle;
     body?: BlockStyle;
