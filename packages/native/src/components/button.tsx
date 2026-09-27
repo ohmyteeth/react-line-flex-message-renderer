@@ -36,7 +36,7 @@ export const Button = ({
   };
   // LINE's default button style is "link" when unspecified (matches the web port's `style ?? "link"`).
   const resolvedStyle = style ?? "link";
-  const textColor = resolvedStyle === "primary" ? "#fff" : resolvedStyle === "link" ? "#42659a" : undefined;
+  const textColor = resolvedStyle === "primary" ? "#fff" : resolvedStyle === "secondary" ? "#111111" : resolvedStyle === "link" ? "#42659a" : undefined;
 
   return (
     <Touchable onPress={handleClick}>
@@ -44,6 +44,17 @@ export const Button = ({
         style={{
           ...(resolvedStyle === "primary" ? {
             backgroundColor: "#17c950",
+            width: "100%",
+            paddingTop: 0,
+            paddingBottom: 0,
+            paddingLeft: 16,
+            paddingRight: 16,
+            justifyContent: "center",
+            alignItems: "center",
+            borderRadius: 8,
+          } : {}),
+          ...(resolvedStyle === "secondary" ? {
+            backgroundColor: "#dcdfe5",
             width: "100%",
             paddingTop: 0,
             paddingBottom: 0,
@@ -83,6 +94,7 @@ export const Button = ({
         }}
       >
         {action.type === "uri" && <Text style={{ color: textColor }}>{action.label}</Text>}
+        {action.type === "postback" && <Text style={{ color: textColor }}>{action.displayText}</Text>}
       </View>
     </Touchable>
   );

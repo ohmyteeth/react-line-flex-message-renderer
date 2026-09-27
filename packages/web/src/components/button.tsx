@@ -50,6 +50,7 @@ export const Button = ({
       onClick={handleClick}
     >
       {action.type === "uri" && action.label}
+      {action.type === "postback" && action.displayText}
     </a>
   );
 };
