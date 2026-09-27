@@ -1,15 +1,18 @@
 import { getActualSize, getMarginSize, type SeparatorComponent } from "@ohmyteeth/line-flex-message-renderer-core";
 import { View } from "react-native";
 import { useParentFlexDirection } from "../hooks/useParentFlexDirection.js";
+import { useDebugMode } from "../context/debug.js";
 
 export const Separator = ({ margin, color }: SeparatorComponent) => {
   const parentDirection = useParentFlexDirection();
+  const isDebugMode = useDebugMode();
 
   return (
     <View
       style={{
         height: 1,
         backgroundColor: color ?? "#d4d6da",
+        ...(isDebugMode ? { borderColor: "red", borderWidth: 1 } : {}),
         // `margin` is space along whichever axis the parent lays siblings out on — marginTop in a
         // "column" parent, marginLeft in a "row" (horizontal/baseline) parent.
         ...(parentDirection === "column"

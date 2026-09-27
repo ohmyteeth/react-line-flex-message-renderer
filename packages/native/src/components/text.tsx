@@ -8,6 +8,7 @@ import {
   type ClickHandler,
 } from "@ohmyteeth/line-flex-message-renderer-core";
 import React from "react";
+import { useDebugMode } from "../context/debug.js";
 import { Text as RNText, TouchableOpacity, type TextStyle, type ViewStyle } from "react-native";
 import { MarginSizeProvider } from "../hooks/useInheritedMarginSize.js";
 import { useParentFlexDirection } from "../hooks/useParentFlexDirection.js";
@@ -38,6 +39,7 @@ export const Text = ({
   onClick,
 }: TextComponent & { onClick?: ClickHandler | undefined }) => {
   const parentDirection = useParentFlexDirection();
+  const isDebugMode = useDebugMode();
   const handleClick = () => {
     if (action) {
       onClick?.(action);
@@ -61,10 +63,10 @@ export const Text = ({
     // space and truncate the label.
     ...(flex !== undefined
       ? {
-          flexGrow: flex === 0 ? 0 : flex,
-          flexShrink: 0,
-          flexBasis: flex === 0 || parentDirection === "column" ? "auto" : 0,
-        }
+        flexGrow: flex === 0 ? 0 : flex,
+        flexShrink: 0,
+        flexBasis: flex === 0 || parentDirection === "column" ? "auto" : 0,
+      }
       : {}),
     // The space `margin` describes is this Text's own gap before its previous sibling, along whichever
     // axis the parent actually lays siblings out on — marginTop in a "column" (vertical) parent, but
@@ -80,6 +82,7 @@ export const Text = ({
     // shrink to fit whatever space its siblings left behind and instead overflows past the card edge.
     // Skipped when `flex` is explicitly set, since that case is already fully handled above.
     ...((align === "center" || align === "end") && flex === undefined ? { flexShrink: 1 } : {}),
+    ...(isDebugMode ? { borderColor: "red", borderWidth: 1 } : {}),
   };
 
   // RN has a known bug where a Text with numberOfLines inside an `alignItems:"baseline"` row can size its
@@ -96,6 +99,7 @@ export const Text = ({
     fontWeight: weight === "regular" ? "400" : weight,
     textAlign: align === "center" ? "center" : align === "end" ? "right" : "left",
     textDecorationLine: decoration !== "none" ? decoration : undefined,
+    ...(isDebugMode ? { borderColor: "blue", borderWidth: 1 } : {}),
   };
 
   if (text) {

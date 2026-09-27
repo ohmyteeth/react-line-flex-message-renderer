@@ -12,8 +12,9 @@ import {
   type ClickHandler,
 } from "@ohmyteeth/line-flex-message-renderer-core";
 import React from "react";
-import { TouchableOpacity, type ViewStyle } from "react-native";
+import { TouchableOpacity, View, type ViewStyle } from "react-native";
 import { ParentFlexDirectionProvider, useParentFlexDirection } from "../hooks/useParentFlexDirection.js";
+import { useDebugMode } from "../context/debug.js";
 
 export const Box = ({
   layout,
@@ -51,6 +52,7 @@ export const Box = ({
     }
   };
   const parentDirection = useParentFlexDirection();
+  const isDebugMode = useDebugMode();
   const ownDirection = layout === "vertical" ? "column" : "row";
 
   const containerStyle: ViewStyle = {
@@ -65,10 +67,10 @@ export const Box = ({
     // box contribute nothing to that auto-height calculation, collapsing the whole ancestor chain to 0.
     ...(flex !== undefined
       ? {
-          flexGrow: flex === 0 ? 0 : flex,
-          flexShrink: 0,
-          flexBasis: flex === 0 || parentDirection === "column" ? "auto" : 0,
-        }
+        flexGrow: flex === 0 ? 0 : flex,
+        flexShrink: 0,
+        flexBasis: flex === 0 || parentDirection === "column" ? "auto" : 0,
+      }
       : { flexShrink: 1 }),
     width: getActualSize(width) ?? (layout === "baseline" ? "100%" : undefined),
     maxWidth: getActualSize(maxWidth),
@@ -104,15 +106,28 @@ export const Box = ({
     left: getActualSize(getOffset(offsetStart)),
     right: getActualSize(getOffset(offsetEnd)),
     ...(width ? { flexShrink: 0 } : {}),
+    ...(isDebugMode ? { borderColor: "red", borderWidth: 1 } : {}),
   };
 
+  if (action) {
+    return (
+      <TouchableOpacity style={containerStyle} onPress={handleClick}>
+        <ParentFlexDirectionProvider direction={ownDirection}>
+          {contents.map((content, i) => (
+            <React.Fragment key={i}>{renderComponent(content)}</React.Fragment>
+          ))}
+        </ParentFlexDirectionProvider>
+      </TouchableOpacity>
+    );
+  }
+
   return (
-    <TouchableOpacity style={containerStyle} onPress={handleClick}>
+    <View style={containerStyle}>
       <ParentFlexDirectionProvider direction={ownDirection}>
         {contents.map((content, i) => (
           <React.Fragment key={i}>{renderComponent(content)}</React.Fragment>
         ))}
       </ParentFlexDirectionProvider>
-    </TouchableOpacity>
+    </View>
   );
 };

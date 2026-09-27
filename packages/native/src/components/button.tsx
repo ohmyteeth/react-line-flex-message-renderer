@@ -8,6 +8,7 @@ import {
 } from "@ohmyteeth/line-flex-message-renderer-core";
 import { Text, TouchableOpacity as Touchable, View } from "react-native";
 import { useParentFlexDirection } from "../hooks/useParentFlexDirection.js";
+import { useDebugMode } from "../context/debug.js";
 
 export const Button = ({
   action,
@@ -27,6 +28,7 @@ export const Button = ({
   onClick,
 }: ButtonComponent & { onClick?: ClickHandler | undefined }) => {
   const parentDirection = useParentFlexDirection();
+  const isDebugMode = useDebugMode();
   const handleClick = () => {
     if (action) {
       onClick?.(action);
@@ -77,6 +79,7 @@ export const Button = ({
           // `color` should only override the style preset's background when it's actually provided —
           // otherwise this erases the "primary" green / makes "link" buttons blend into the card.
           ...(color !== undefined ? { backgroundColor: color } : {}),
+          ...(isDebugMode ? { borderColor: "red", borderWidth: 1 } : {}),
         }}
       >
         {action.type === "uri" && <Text style={{ color: textColor }}>{action.label}</Text>}

@@ -23,3 +23,4 @@ registerComponents({
 });
 
 export { FlexMessageRenderer };
+export { DebugProvider, useDebugMode } from "./context/debug.js";

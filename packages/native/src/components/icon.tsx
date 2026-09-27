@@ -7,6 +7,7 @@ import {
 } from "@ohmyteeth/line-flex-message-renderer-core";
 import { Image, View } from "react-native";
 import { useParentFlexDirection } from "../hooks/useParentFlexDirection.js";
+import { useDebugMode } from "../context/debug.js";
 
 export const Icon = ({
   url,
@@ -21,6 +22,7 @@ export const Icon = ({
   aspectRatio,
 }: IconComponent) => {
   const parentDirection = useParentFlexDirection();
+  const isDebugMode = useDebugMode();
   // getIconSize(undefined) returns undefined; without this fallback an unsized icon renders at its source's native pixel size.
   const width = getActualSize(getIconSize(size ?? "md"));
   const marginSize = getActualSize(getMarginSize(margin));
@@ -33,6 +35,7 @@ export const Icon = ({
         // `margin` is space along whichever axis the parent lays siblings out on — marginTop in a
         // "column" parent, marginLeft in a "row" (horizontal/baseline) parent.
         ...(parentDirection === "column" ? { marginTop: marginSize } : { marginLeft: marginSize }),
+        ...(isDebugMode ? { borderColor: "red", borderWidth: 1 } : {}),
       }}
     >
       <Image
@@ -43,6 +46,7 @@ export const Icon = ({
           left: getActualSize(getOffset(offsetStart)),
           right: getActualSize(getOffset(offsetEnd)),
           position: position === undefined ? "relative" : position,
+          ...(isDebugMode ? { borderColor: "blue", borderWidth: 1 } : {}),
         }}
         source={{ uri: url }}
       />
