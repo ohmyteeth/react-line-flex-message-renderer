@@ -7,6 +7,7 @@ import {
   getActualSize,
 } from "@ohmyteeth/line-flex-message-renderer-core";
 import { Image as RNImage, TouchableOpacity, View } from "react-native";
+import { useDebugMode } from "../context/debug.js";
 import { useParentFlexDirection } from "../hooks/useParentFlexDirection.js";
 
 export const Image = ({
@@ -29,6 +30,7 @@ export const Image = ({
   onClick,
 }: ImageComponent & { onClick?: ClickHandler | undefined }) => {
   const parentDirection = useParentFlexDirection();
+  const isDebugMode = useDebugMode();
   const rawWidth = getImageSize(size);
   const sizeWidth = rawWidth === "unset" ? undefined : getActualSize(rawWidth);
   // When `flex` is meant to grow this image within a row/column of siblings, let it fill 100% of
@@ -71,10 +73,28 @@ export const Image = ({
           : flex
             ? {}
             : { marginTop: 0, marginBottom: 0, marginRight: "auto", marginLeft: "auto" }),
+        ...(isDebugMode ? { borderColor: "red", borderWidth: 1 } : {}),
       }}
     >
-      {/* Only one of width/height may be definite — the other must stay unset so aspectRatio can derive it. */}
-      <TouchableOpacity onPress={handleClick} style={width !== undefined ? { width } : { height: "100%" }}>
+      {action ?
+        <TouchableOpacity onPress={handleClick} style={width !== undefined ? { width, ...(isDebugMode ? { borderColor: "red", borderWidth: 1 } : {}) } : { height: "100%", ...(isDebugMode ? { borderColor: "red", borderWidth: 1 } : {}) }}>
+          <RNImage
+            style={{
+              aspectRatio: aspectRatio?.split(":").join("/") ?? "1",
+              objectFit: aspectMode === "cover" ? "cover" : "contain",
+              backgroundColor,
+              position: position === undefined ? "relative" : position,
+              top: getActualSize(getOffset(offsetTop)),
+              bottom: getActualSize(getOffset(offsetBottom)),
+              left: getActualSize(getOffset(offsetStart)),
+              right: getActualSize(getOffset(offsetEnd)),
+              ...(width !== undefined ? { width } : { height: "auto", width: "100%" }),
+              ...(isDebugMode ? { borderColor: "blue", borderWidth: 1 } : {}),
+            }}
+            source={{ uri: url }}
+          />
+        </TouchableOpacity>
+        :
         <RNImage
           style={{
             aspectRatio: aspectRatio?.split(":").join("/") ?? "1",
@@ -85,11 +105,13 @@ export const Image = ({
             bottom: getActualSize(getOffset(offsetBottom)),
             left: getActualSize(getOffset(offsetStart)),
             right: getActualSize(getOffset(offsetEnd)),
-            ...(width !== undefined ? { width } : { height: "100%" }),
+            ...(width !== undefined ? { width } : { height: "auto", width: "100%" }),
+            ...(isDebugMode ? { borderColor: "blue", borderWidth: 1 } : {}),
           }}
           source={{ uri: url }}
-        />
-      </TouchableOpacity>
+        />}
+      {/* Only one of width/height may be definite — the other must stay unset so aspectRatio can derive it. */}
+
     </View>
   );
 };
