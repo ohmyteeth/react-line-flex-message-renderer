@@ -1,4 +1,4 @@
-import FlexMessageJSON from "@ohmyteeth/line-flex-message-renderer-sample-fixtures/fixtures/apparel.json" with { type: "json" };
+import FlexMessageJSON from "@ohmyteeth/line-flex-message-renderer-sample-fixtures/fixtures/transit.json" with { type: "json" };
 import { FlexMessageRenderer } from "@ohmyteeth/react-native-line-flex-message-renderer";
 import type { Meta, StoryObj } from "@storybook/react-native";
 
