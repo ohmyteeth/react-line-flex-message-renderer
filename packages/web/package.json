@@ -1,6 +1,6 @@
 {
   "name": "@ohmyteeth/react-line-flex-message-renderer",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "This is a component library for rendering LINE Flex Messages in React.",
   "license": "MIT",
   "author": "Oh my teeth, Co.",
