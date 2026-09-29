@@ -5,7 +5,7 @@ import {
   type ClickHandler,
 } from "@ohmyteeth/line-flex-message-renderer-core";
 import clsx from "clsx";
-import styles from "./carousel.module.css";
+import styles from "./bubble.module.css";
 
 export const Bubble = ({
   body,
@@ -29,11 +29,11 @@ export const Bubble = ({
 
   return (
     <div
-      className={clsx(s.bubble, s[size ?? "mega"])}
+      className={clsx(styles.bubble, styles[size ?? "mega"])}
       dir={direction}
       onClick={action ? () => handleClick(action) : undefined}
     >
-      <div className={s.inner}>
+      <div className={styles.inner}>
         {header && (
           <div
             className={styles.header}
@@ -62,10 +62,10 @@ export const Bubble = ({
           <div
             className={clsx(
               styles.body,
-              hasHeader && !body.paddingAll && s["body-with-header"],
-              hasHero && s["body-with-hero"],
-              hasFooter && s["body-with-footer"],
-              !body.paddingAll && s["with-padding"],
+              hasHeader && !body.paddingAll && styles["body-with-header"],
+              hasHero && styles["body-with-hero"],
+              hasFooter && styles["body-with-footer"],
+              !body.paddingAll && styles["with-padding"],
             )}
             style={{ backgroundColor: s?.body?.backgroundColor ?? "#fff" }}
           >
