@@ -89,7 +89,7 @@ export const Text = ({
           }}
         >
           {contents.map((content, index) => (
-            <React.Fragment key={index}>{renderComponent(content)}</React.Fragment>
+            <React.Fragment key={index}>{renderComponent(content, onClick)}</React.Fragment>
           ))}
         </p>
       </div>

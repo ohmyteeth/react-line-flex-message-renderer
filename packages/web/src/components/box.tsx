@@ -112,7 +112,7 @@ export const Box = ({
       onClick={handleClick}
     >
       {contents.map((content, i) => (
-        <React.Fragment key={i}>{renderComponent(content)}</React.Fragment>
+        <React.Fragment key={i}>{renderComponent(content, onClick)}</React.Fragment>
       ))}
     </div>
   );

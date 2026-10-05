@@ -114,7 +114,7 @@ export const Box = ({
       <TouchableOpacity style={containerStyle} onPress={handleClick}>
         <ParentFlexDirectionProvider direction={ownDirection}>
           {contents.map((content, i) => (
-            <React.Fragment key={i}>{renderComponent(content)}</React.Fragment>
+            <React.Fragment key={i}>{renderComponent(content, onClick)}</React.Fragment>
           ))}
         </ParentFlexDirectionProvider>
       </TouchableOpacity>
@@ -125,7 +125,7 @@ export const Box = ({
     <View style={containerStyle}>
       <ParentFlexDirectionProvider direction={ownDirection}>
         {contents.map((content, i) => (
-          <React.Fragment key={i}>{renderComponent(content)}</React.Fragment>
+          <React.Fragment key={i}>{renderComponent(content, onClick)}</React.Fragment>
         ))}
       </ParentFlexDirectionProvider>
     </View>

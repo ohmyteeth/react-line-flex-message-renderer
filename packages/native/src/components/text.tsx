@@ -120,7 +120,7 @@ export const Text = ({
         <MarginSizeProvider marginSize={marginSize}>
           <RNText style={textStyle} numberOfLines={numberOfLines} ellipsizeMode="tail">
             {contents.map((content, index) => (
-              <React.Fragment key={index}>{renderComponent(content)}</React.Fragment>
+              <React.Fragment key={index}>{renderComponent(content, onClick)}</React.Fragment>
             ))}
           </RNText>
         </MarginSizeProvider>
