@@ -44,3 +44,7 @@ example
 
 *storybook.log
 storybook-static
+
+# Visual regression tests (baselines in __vrt__/ are committed)
+__diffs__/
+.vitest/
