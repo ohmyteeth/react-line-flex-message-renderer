@@ -1,30 +1,65 @@
-name: Publish Package
+name: Publish packages
 
 on:
-  push:
-    tags:
-      - "v*"
-  workflow_dispatch:
+  release:
+    types: [published]
 
 permissions:
-  id-token: write
   contents: read
+  id-token: write
+
+concurrency:
+  group: npm-publish-${{ github.event.release.tag_name }}
+  cancel-in-progress: false
 
 jobs:
   publish:
+    name: Publish to npm
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+    timeout-minutes: 15
 
-      - uses: actions/setup-node@v4
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up pnpm
+        uses: pnpm/action-setup@0977fd99725f1db4007ccb2928dbb4e90d06cc86 # v6.0.10
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: "24"
-          registry-url: "https://registry.npmjs.org"
+          registry-url: https://registry.npmjs.org
+          package-manager-cache: false
 
-      - uses: pnpm/action-setup@v4
-        with:
-          version: latest
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run build
-      - run: pnpm -r --filter "./packages/*" publish --access public --provenance --no-git-checks
+      - name: Type-check
+        run: pnpm typecheck
+
+      - name: Test
+        run: pnpm test
+
+      - name: Pack packages
+        run: |
+          mkdir publish
+          pnpm --filter @ohmyteeth/line-flex-message-renderer-core pack --pack-destination publish
+          pnpm --filter @ohmyteeth/react-line-flex-message-renderer pack --pack-destination publish
+          pnpm --filter @ohmyteeth/react-native-line-flex-message-renderer pack --pack-destination publish
+
+      - name: Select npm dist-tag
+        id: dist-tag
+        shell: bash
+        run: |
+          if [[ "${{ github.event.release.prerelease }}" == "true" ]]; then
+            echo "name=next" >> "$GITHUB_OUTPUT"
+          else
+            echo "name=latest" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish
+        run: |
+          npm publish publish/ohmyteeth-line-flex-message-renderer-core-*.tgz --access public --tag "${{ steps.dist-tag.outputs.name }}"
+          npm publish publish/ohmyteeth-react-line-flex-message-renderer-*.tgz --access public --tag "${{ steps.dist-tag.outputs.name }}"
+          npm publish publish/ohmyteeth-react-native-line-flex-message-renderer-*.tgz --access public --tag "${{ steps.dist-tag.outputs.name }}"
