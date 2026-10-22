@@ -75,6 +75,13 @@ jobs:
           echo "SIMULATOR_UDID=$udid" >> "$GITHUB_ENV"
           xcrun simctl boot "$udid"
           xcrun simctl bootstatus "$udid" -b
+          # Han characters (e.g. 東京旅行) take Japanese or Chinese glyphs from the preferred language,
+          # so pin it to the baselines' language and reboot to apply it.
+          xcrun simctl spawn "$udid" defaults write -g AppleLanguages -array ja-JP en-JP
+          xcrun simctl spawn "$udid" defaults write -g AppleLocale -string ja_JP
+          xcrun simctl shutdown "$udid"
+          xcrun simctl boot "$udid"
+          xcrun simctl bootstatus "$udid" -b
 
       - name: Prebuild
         run: pnpm exec expo prebuild --platform ios
@@ -175,8 +182,13 @@ jobs:
           api-level: "37.2"
           target: google_apis_playstore_ps16k
           arch: x86_64
-          profile: pixel_10_pro
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot
+          avd-name: vrt
+          # The runner's avdmanager does not know the pixel_10_pro profile, so give the AVD its screen directly.
+          pre-emulator-launch-script: |
+            sed -i -E '/^(hw\.lcd\.(width|height|density)|skin\.[a-z]+)=/d' "$ANDROID_AVD_HOME/vrt.avd/config.ini"
+            printf 'hw.lcd.width=1280\nhw.lcd.height=2856\nhw.lcd.density=480\n' >> "$ANDROID_AVD_HOME/vrt.avd/config.ini"
+          # ja-JP for the same reason as the iOS simulator: CJK glyphs follow the locale.
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -no-snapshot -change-locale ja-JP
           working-directory: packages/native-samples
           # Each line runs in its own shell. `-g` grants the local network permission that Android 17 asks for.
           script: |

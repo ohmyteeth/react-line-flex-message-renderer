@@ -46,6 +46,8 @@ Baselines are kept per platform and were taken on these devices; use the same on
 | iOS | iPhone 17 Pro simulator, iOS 26.5 |
 | Android | Pixel 10 Pro emulator, Android 17 (API 37) |
 
+Set the device language to Japanese (`ja-JP`). Han characters such as 東京旅行 are drawn with Japanese or Chinese glyphs depending on the language, so an English device fails the stories that contain Japanese text.
+
 Android 17 asks for the local network permission on first launch. Allow it, or grant it ahead of time:
 
 ```bash
