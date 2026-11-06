@@ -60,6 +60,16 @@ export const Box = ({
     }
   };
 
+  const getFlexValue = (flex?: number) => {
+    if (action?.type) {
+      return "1 0";
+    }
+
+    if (flex === undefined) return undefined;
+
+    return flex === 0 ? "none" : flex;
+  }
+
   return (
     <div
       className={clsx(
@@ -84,7 +94,7 @@ export const Box = ({
               flexDirection: "column",
               rowGap: getSpacingSize(spacing),
             }),
-        flex: flex ? (flex === 0 ? "none" : flex) : undefined,
+        flex: getFlexValue(flex),
         width,
         maxWidth,
         height,

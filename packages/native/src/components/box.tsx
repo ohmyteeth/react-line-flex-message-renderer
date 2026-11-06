@@ -54,6 +54,15 @@ export const Box = ({
   const parentDirection = useParentFlexDirection();
   const isDebugMode = useDebugMode();
   const ownDirection = layout === "vertical" ? "column" : "row";
+  const getFlexValue = (flex?: number) => {
+    if (action?.type) {
+      return { flexGrow: 1, flexShrink: 0 };
+    }
+
+    if (flex === undefined) return undefined;
+
+    return flex === 0 ? { flexShrink: 1 } : { flexShrink: 1 };
+  };
 
   const containerStyle: ViewStyle = {
     ...(layout === "baseline"
@@ -71,7 +80,8 @@ export const Box = ({
         flexShrink: 0,
         flexBasis: flex === 0 || parentDirection === "column" ? "auto" : 0,
       }
-      : { flexShrink: 1 }),
+      : getFlexValue(flex)
+    ),
     width: getActualSize(width) ?? (layout === "baseline" ? "100%" : undefined),
     maxWidth: getActualSize(maxWidth),
     height: getActualSize(height),
