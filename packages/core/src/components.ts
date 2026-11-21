@@ -1,5 +1,7 @@
 import React from "react";
+import { unsupportedComponentTypes } from "./unsupported-components.js";
 import type {
+  Action,
   BoxComponent,
   ButtonComponent,
   FillerComponent,
@@ -9,8 +11,9 @@ import type {
   SpanComponent,
   TextComponent,
   VideoComponent,
-} from "./interfaces/components/index.js";
-import type { Action } from "./interfaces/index.js";
+} from "./interfaces/index.js";
+
+type UnsupportedComponentType = (typeof unsupportedComponentTypes)[number];
 
 const registry = new Map<string, (data: any, onClick: ClickHandler) => React.ReactNode>();
 
@@ -44,11 +47,16 @@ export const renderComponent = (
     | IconComponent
     | ImageComponent
     | SeparatorComponent
+    | { type: UnsupportedComponentType }
     | SpanComponent
     | TextComponent
     | VideoComponent,
   onClick?: (action: Action) => void,
 ) => {
+  if (unsupportedComponentTypes.some((type) => type === data.type)) {
+    return null;
+  }
+
   const componentType = data.type;
   const component = registry.get(componentType);
   if (!component) {
