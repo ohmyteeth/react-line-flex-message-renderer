@@ -302,6 +302,9 @@ importers:
       '@gorhom/bottom-sheet':
         specifier: ^5.2.14
         version: 5.2.14(ddf353a80810f1acde959bbab5dd13bb)
+      '@natsuneko-laboratory/react-native-visual-regression-test':
+        specifier: ^0.1.0
+        version: 0.1.0(react-native@0.86.0(@babel/core@7.28.6(supports-color@8.1.1))(@react-native-community/cli@20.1.0(supports-color@8.1.1)(typescript@6.0.3))(@react-native/metro-config@0.86.0(@babel/core@7.28.6(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.2.17)(react@19.2.3)(supports-color@8.1.1))(react@19.2.3)(vitest@4.1.10)
       '@ohmyteeth/line-flex-message-renderer-sample-fixtures':
         specifier: workspace:*
         version: link:../sample-fixtures
@@ -405,12 +408,18 @@ importers:
         specifier: ^10.6.0
         version: 10.6.0(@types/react@19.2.17)(prettier@2.8.8)(react@19.2.3)
     devDependencies:
+      '@types/node':
+        specifier: ^26.1.1
+        version: 26.1.1
       '@types/react':
         specifier: ~19.2.2
         version: 19.2.17
       typescript:
         specifier: ~6.0.3
         version: 6.0.3
+      vitest:
+        specifier: ^4.1.10
+        version: 4.1.10(@types/node@26.1.1)(@vitest/browser-playwright@4.1.10)(@vitest/coverage-v8@4.1.10)(@vitest/ui@4.1.10)(vite@7.3.1(@types/node@26.1.1)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.49.0)(tsx@4.23.0)(yaml@2.9.0))
 
   packages/sample-fixtures: {}
 
@@ -1596,6 +1605,17 @@ packages:
     peerDependencies:
       '@emnapi/core': ^1.7.1
       '@emnapi/runtime': ^1.7.1
+
+  '@natsuneko-laboratory/react-native-visual-regression-test@0.1.0':
+    resolution: {integrity: sha512-Jehq71eJ8DDerzWVEFCsgOr3Hu6qN7rRQcc0UQAcGFnjO037Xsc4wQU0lPUpJxuPP/U1BgyHHfgnRXtS56vUoQ==}
+    engines: {node: '>=20.19'}
+    peerDependencies:
+      react: '>=19'
+      react-native: '>=0.80'
+      vitest: '>=4'
+    peerDependenciesMeta:
+      vitest:
+        optional: true
 
   '@neoconfetti/react@1.0.0':
     resolution: {integrity: sha512-klcSooChXXOzIm+SE5IISIAn3bYzYfPjbX7D7HoqZL84oAfgREeSg5vSIaSFH+DaGzzvImTyWe1OyrJ67vik4A==}
@@ -5480,6 +5500,10 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
+  pixelmatch@7.2.0:
+    resolution: {integrity: sha512-xhcb4yHu9sM/G7foGzoLtXYcC0zHEaOXXjRKhGup0fw78Nf2Tkiapv4EQyMzrbcmQPsllAI7DbFY2UT7PlI9Pg==}
+    hasBin: true
+
   playwright-core@1.61.1:
     resolution: {integrity: sha512-h7Qlt6m4REp25qvIdvbDtVmD4LqVXfpRxhORv9L0jzETM05p4fuPJ3dKyuSXQxDSbXnmS79HAgi9589lGSpLkg==}
     engines: {node: '>=18'}
@@ -7874,6 +7898,15 @@ snapshots:
       '@emnapi/runtime': 1.9.2
       '@tybys/wasm-util': 0.10.3
     optional: true
+
+  '@natsuneko-laboratory/react-native-visual-regression-test@0.1.0(react-native@0.86.0(@babel/core@7.28.6(supports-color@8.1.1))(@react-native-community/cli@20.1.0(supports-color@8.1.1)(typescript@6.0.3))(@react-native/metro-config@0.86.0(@babel/core@7.28.6(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.2.17)(react@19.2.3)(supports-color@8.1.1))(react@19.2.3)(vitest@4.1.10)':
+    dependencies:
+      pixelmatch: 7.2.0
+      pngjs: 7.0.0
+      react: 19.2.3
+      react-native: 0.86.0(@babel/core@7.28.6(supports-color@8.1.1))(@react-native-community/cli@20.1.0(supports-color@8.1.1)(typescript@6.0.3))(@react-native/metro-config@0.86.0(@babel/core@7.28.6(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.2.17)(react@19.2.3)(supports-color@8.1.1)
+    optionalDependencies:
+      vitest: 4.1.10(@types/node@26.1.1)(@vitest/browser-playwright@4.1.10)(@vitest/coverage-v8@4.1.10)(@vitest/ui@4.1.10)(vite@7.3.1(@types/node@26.1.1)(jiti@2.7.0)(lightningcss@1.32.0)(terser@5.49.0)(tsx@4.23.0)(yaml@2.9.0))
 
   '@neoconfetti/react@1.0.0': {}
 
@@ -11977,6 +12010,10 @@ snapshots:
   picoquery@2.5.0: {}
 
   pidtree@1.0.0: {}
+
+  pixelmatch@7.2.0:
+    dependencies:
+      pngjs: 7.0.0
 
   playwright-core@1.61.1: {}
 
